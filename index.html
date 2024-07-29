@@ -13,10 +13,10 @@
         }
         @keyframes fall {
             0% {
-                transform: translateY(-100%);
+                transform: translateY(10vh);
             }
             100% {
-                transform: translateY(100vh);
+                transform: translateY(80vh);
             }
         
         }
@@ -27,14 +27,16 @@
         }
         
         #basket {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: "Raleway", sans-serif;
             font-optical-sizing: auto;
             font-weight: 500;
-            color: #1f1f1f;
+            color: #ffffff;
             font-style: normal;
             position: absolute;
-            text-align: center;
-            font-size: 40px;
+            font-size: 20px;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -42,6 +44,17 @@
             height: 50px;
             background-color: #4f96f9;
             border-radius: 10px;
+        }
+
+        #logo {
+            position: absolute;
+            transform: translateX(-50%);
+            
+            left: 50%;
+            bottom: 40%;
+            width: 300px;
+            height: 240px;
+            opacity: 70%;
         }
 
         #buttonplace {
@@ -58,19 +71,21 @@
             font-family: "Raleway", sans-serif;
             font-optical-sizing: auto;
             font-weight: 700;
+            background-color: #4f96f9;
+            color: #ffffff;
             font-size: 20px;
             width: 100%;
-            height: 50px;
+            height: 70px;
             border-radius: 20px;
         }
 
         .fruit {
             position: absolute;
-            background-image: url("iteen.png");
             background-repeat: no-repeat;
             width: 80px;
             height: 80px;
             border-radius: 0%;
+            filter: drop-shadow(3px 5px 5px #000);
         }
         .bomb {
             position: absolute;
@@ -79,17 +94,22 @@
             width: 80px;
             height: 80px;
             border-radius: 0%;
+            filter: drop-shadow(3px 5px 5px #000);
         }
     </style>
 </head>
 <body>
     
     <div id="basket">
-        Ваш счёт 0/20
+        Спасено кнопок 0 | 20
     </div>
 
     <div id="buttonplace">
 
+    </div>
+
+    <div id="logo">
+        <img src="iteen.png" alt="лого">
     </div>
 
     <script>
@@ -100,6 +120,9 @@
             const fruit = document.createElement('div');
             fruit.className = 'fruit';
             fruit.style.left = 10 + Math.random() * (window.innerWidth - 100) + 'px';
+            let i = Math.floor(Math.random()*5);
+            let ikey = `key${i}.png`;
+            fruit.style.backgroundImage = `url(${ikey})`;
             document.body.appendChild(fruit);
 
             fruit.addEventListener('click', () => {
@@ -148,7 +171,7 @@
         }
 
         function updateScore() {
-            basket.innerText = `Ваш счёт ${score}/20`;
+            basket.innerText = `Спасено кнопок  ${score} | 20`;
         }
 
         setInterval(createFruit, 1500);
