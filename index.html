@@ -134,7 +134,10 @@
             bomb.addEventListener('click', () => {
                 bomb.remove();
                 if (score > 0){
-                    score--;
+                    score = score - 1;
+                    if (score < 0) {
+                        score = 0;
+                    }
                     updateScore();
                 }
             });
